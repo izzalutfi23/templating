@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'Home@index');
+
+
+//Mahasiswa
+Route::get('/mahasiswa', 'Mhs@index');
