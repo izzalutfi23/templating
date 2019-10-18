@@ -16,3 +16,4 @@ Route::get('/', 'Home@index');
 
 //Mahasiswa
 Route::get('/mahasiswa', 'Mhs@index');
+Route::post('/mahasiswa', 'Mhs@store');

@@ -40,7 +40,12 @@ class Mhs extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'NRP'=>'required',
+            'email'=>'required',
+            'jurusan'=>'required'
+        ]);
     }
 
     /**

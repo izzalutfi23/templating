@@ -42,19 +42,20 @@
                           <div class="box-body">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Nama</label>
-                              <input type="text" class="form-control" id="nama" placeholder="Enter Nama">
+                              <input type="text" name="nama" class="form-control" id="nama" placeholder="Enter Nama">
+                              @error('nama')<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>Silahkan isikan nama</label>@enderror
                             </div>
                             <div class="form-group">
                               <label for="exampleInputPassword1">NRP</label>
-                              <input type="text" class="form-control" id="nrp" placeholder="Password">
+                              <input type="text" name="NRP" class="form-control" id="nrp" placeholder="Password">
                             </div>
                             <div class="form-group">
                               <label for="exampleInputPassword1">Email</label>
-                              <input type="text" class="form-control" id="email" placeholder="Email">
+                              <input type="text" name="email" class="form-control" id="email" placeholder="Email">
                             </div>
                             <div class="form-group">
                               <label for="exampleInputPassword1">Jurusan</label>
-                              <input type="text" class="form-control" id="jurusan" placeholder="Jurusan">
+                              <input type="text" name="jurusan" class="form-control" id="jurusan" placeholder="Jurusan">
                             </div>
                           </div>
                         </div>
