@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mhsmodel;
 use Illuminate\Http\Request;
+use DB;
 
 class Mhs extends Controller
 {
@@ -14,7 +15,10 @@ class Mhs extends Controller
      */
     public function index()
     {
-        $mhs = Mhsmodel::all();
+
+        $mhs = DB::table('mahasiswa')
+        ->join('matkul', 'mahasiswa.kdmatkul', '=', 'matkul.kdmatkul')
+        ->get();
 
         $data = array(
             'mahasiswa'=>$mhs
@@ -46,6 +50,10 @@ class Mhs extends Controller
             'email'=>'required',
             'jurusan'=>'required'
         ]);
+
+        Mhsmodel::create($request->all());
+
+        return redirect('/mahasiswa')->with('status', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -79,7 +87,21 @@ class Mhs extends Controller
      */
     public function update(Request $request, Mhsmodel $mhsmodel)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'NRP'=>'required',
+            'email'=>'required',
+            'jurusan'=>'required'
+        ]);
+
+        Mhsmodel::where('id', $mhsmodel->id)->update([
+            'nama'=>$request->nama,
+            'NRP'=>$request->NRP,
+            'email'=>$request->email,
+            'jurusan'=>$request->jurusan
+        ]);
+
+        return redirect('/mahasiswa')->with('status', 'Data berhasil diubah');
     }
 
     /**
@@ -90,6 +112,7 @@ class Mhs extends Controller
      */
     public function destroy(Mhsmodel $mhsmodel)
     {
-        //
+        Mhsmodel::destroy($mhsmodel->id);
+        return redirect('/mahasiswa')->with('status', 'Data berhasil dihapus');
     }
 }
