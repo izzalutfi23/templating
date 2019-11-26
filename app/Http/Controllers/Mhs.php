@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ModelMatkul;
 use App\Mhsmodel;
 use Illuminate\Http\Request;
 use DB;
@@ -15,13 +16,15 @@ class Mhs extends Controller
      */
     public function index()
     {
-
         $mhs = DB::table('mahasiswa')
         ->join('matkul', 'mahasiswa.kdmatkul', '=', 'matkul.kdmatkul')
         ->get();
 
+        $matkul = ModelMatkul::get();
+
         $data = array(
-            'mahasiswa'=>$mhs
+            'mahasiswa'=>$mhs,
+            'matkul'=>$matkul
         );
         return view('mahasiswa.mahasiswa', $data);
     }
@@ -48,7 +51,8 @@ class Mhs extends Controller
             'nama'=>'required',
             'NRP'=>'required',
             'email'=>'required',
-            'jurusan'=>'required'
+            'jurusan'=>'required',
+            'kdmatkul'=>'required'
         ]);
 
         Mhsmodel::create($request->all());
@@ -91,14 +95,16 @@ class Mhs extends Controller
             'nama'=>'required',
             'NRP'=>'required',
             'email'=>'required',
-            'jurusan'=>'required'
+            'jurusan'=>'required',
+            'kdmatkul'=>'required'
         ]);
 
         Mhsmodel::where('id', $mhsmodel->id)->update([
             'nama'=>$request->nama,
             'NRP'=>$request->NRP,
             'email'=>$request->email,
-            'jurusan'=>$request->jurusan
+            'jurusan'=>$request->jurusan,
+            'kdmatkul'=>$request->kdmatkul
         ]);
 
         return redirect('/mahasiswa')->with('status', 'Data berhasil diubah');

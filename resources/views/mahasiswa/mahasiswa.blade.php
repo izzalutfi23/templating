@@ -71,6 +71,16 @@
                               <input type="text" name="jurusan" class="form-control" id="jurusan" placeholder="Jurusan">
                               @error('jurusan')<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>Silahkan isikan nama</label>@enderror
                             </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Matkul</label>
+                              <select name="kdmatkul" class="form-control">
+                                <option value="0">--Pilih Matkul--</option>
+                                @foreach($matkul as $m)
+                                <option value="{{$m->kdmatkul}}">{{$m->nama_m}}</option>
+                                @endforeach
+                              </select>
+                              @error('kdmatkul')<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>Silahkan isikan nama</label>@enderror
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -169,6 +179,16 @@
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Jurusan</label>
                                     <input type="text" name="jurusan" class="form-control" id="jurusan" value="{{$mhs->jurusan}}">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Matkul</label>
+                                    <select name="kdmatkul" class="form-control">
+                                      <option value="0">--Pilih Matkul--</option>
+                                      @foreach($matkul as $m)
+                                      <option @if($m->kdmatkul==$mhs->kdmatkul) selected="selected" @endif value="{{$m->kdmatkul}}">{{$m->nama_m}}</option>
+                                      @endforeach
+                                    </select>
+                                    @error('kdmatkul')<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>Silahkan isikan nama</label>@enderror
                                   </div>
                                 </div>
                               </div>
